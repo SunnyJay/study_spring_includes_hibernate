@@ -2,7 +2,7 @@
 apply plugin: 'java'
 apply plugin: 'eclipse'
 repositories {
-    
+    //使用国内源 比较快
     maven{ url 'http://maven.oschina.net/content/groups/public/'} 
 }
 dependencies {
