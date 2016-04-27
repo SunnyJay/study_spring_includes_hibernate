@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE beans PUBLIC "-//SPRING//DTD BEAN//EN"
+ "http://www.sprintframework.org/dtd/spring-beans.dtd">
+<beans>
+	<bean id="userDao" class="com.sun.hibernate.UserDaoImplement">
+	      <!-- 给userDao注入HibernateTemplate -->
+		  <property name="hibernateTemplate">
+             <ref bean="hibernateTemplate" />
+          </property>
+	</bean>
+	
+	<!-- 配置sessionFactory。这种方式比较简单，直接引用 hibernate.cfg.xml -->
+	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+		<property name="configLocation">
+		<value>classpath:com/sun/hibernate/hibernate.cfg.xml</value>
+		</property>
+		
+		<!-- 寻找映射文件，这种方式比较简单，直接在该路径下寻找 -->
+		<property name="mappingDirectoryLocations">
+             <list>
+                <value>classpath:com/sun/hibernate</value>
+            </list>
+      </property>
+	</bean>
+	
+	<!-- 给hibernateTemplate注入sessionFactory hibernateTemplate必须提供一个sessionFactory引用。-->
+	<bean id="hibernateTemplate" class="org.springframework.orm.hibernate4.HibernateTemplate">
+	      <property name="sessionFactory">
+              <ref bean="sessionFactory"/>
+          </property>
+    </bean>
+</beans>

@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+	<class name="com.sun.hibernate.User">
+		<id name="id">  
+			<generator class="native"></generator> 
+		</id>
+		<!-- 重要的属性cascade 级联
+		Cascade 属性值：
+		none:在保存、删除修改对象的时候，不考虑其附属物的操作
+		save-update:在保存、更新当前对象时，级联保存、更新附属物。
+		delete:在删除当前对象时，级联删除附属物。
+		all: 包含save-update和delete的操作
+		delete-orphan:删除和当前对象解除关系的附属对象。 -->
+		<many-to-one name="group"  class="com.sun.hibernate.Group" column="groupid" cascade="all"/>
+		<property name="name"></property>
+		<property name="password"></property>
+		<property name="createTime" type="date"></property>
+		<property name="expireTime" type="date"></property>
+	</class>
+
+</hibernate-mapping>
