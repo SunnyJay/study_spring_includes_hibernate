@@ -1,0 +1,2 @@
+本项目仅用来学习Spring集成Hibernate的基本知识。
+基于Eclipse+Gradle构建。
